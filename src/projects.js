@@ -1,15 +1,9 @@
 const createProject = (title) => {
   let todoArr = [];
 
-  const sortTodos = (title) => {
-    for (let i = 0; i < projArr.length; i++) {
-      if (projArr[i].title === title) {
-        projIndex = i;
-        break;
-      }
-    }
-
-    projArr[projIndex].sort((firstObj, secondObj) => {
+  //a
+  const sortTodos = () => {
+    todoArr.sort((firstObj, secondObj) => {
       if (firstObj.priority < secondObj.priority) {
         return -1;
       } else return 1;
@@ -25,7 +19,7 @@ const createProject = (title) => {
     }
   };
 
-  return { title, todoArr, deleteTodo };
+  return { title, todoArr, deleteTodo, sortTodos };
 };
 
 export { createProject };
