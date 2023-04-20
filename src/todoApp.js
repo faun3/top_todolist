@@ -6,12 +6,38 @@ const appFactory = () => {
   let projArr = [];
 
   //default project when the app opens is called "Tasks"
-  return { projArr };
+  projArr.push(createProject("Tasks"));
+
+  const addProject = () => {
+    let name = "New Name1";
+    projArr.push(createProject(name));
+  };
+
+  const addTask = (projectName) => {
+    let todo = createTodo("New Todo", "Cool thing to do", new Date(), 1);
+    if (projectName === "") {
+      projectName = "Tasks";
+    }
+
+    let found = false;
+
+    for (let i = 0; i < projArr.length; i++) {
+      if (projArr[i].title === projectName) {
+        found = true;
+        projArr[i].todoArr.push(todo);
+        break;
+      }
+    }
+    if (found === false) {
+      projArr.push(createProject(projectName));
+      projArr[projArr.length - 1].todoArr.push(todo);
+    }
+  };
+
+  return { projArr, addProject, addTask };
 };
 
 const app = appFactory();
-
-app.projArr.push(createProject("Default Project"));
 
 app.projArr.push(createProject("Test proj 1"));
 app.projArr[1].todoArr.push(
@@ -21,10 +47,10 @@ app.projArr[1].todoArr.push(
   createTodo("I will be deleted", "Goodbye!", new Date(), 0)
 );
 
-app.projArr[1].sortTodos();
+app.addTask("");
+app.addTask("Better Cooler Project");
 
 console.table(app.projArr);
-console.table(app.projArr[1].todoArr);
 
 //TODO creation
 //
