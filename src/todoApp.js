@@ -50,10 +50,9 @@ app.projArr[1].todoArr.push(
   createTodo("I will be deleted", "Goodbye!", new Date(), 0)
 );
 
-app.addProject();
-
 app.addTask();
-app.addTask("Better Cooler Project");
+
+app.projArr[0].todoArr[0].setDone();
 
 console.table(app.projArr);
 
