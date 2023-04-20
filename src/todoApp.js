@@ -8,8 +8,10 @@ const appFactory = () => {
   //default project when the app opens is called "Tasks"
   projArr.push(createProject("Tasks"));
 
-  const addProject = () => {
-    let name = "New Name1";
+  const addProject = (name) => {
+    if (name === undefined) {
+      name = "Oops!";
+    }
     projArr.push(createProject(name));
   };
 
@@ -43,9 +45,12 @@ app.projArr.push(createProject("Test proj 1"));
 app.projArr[1].todoArr.push(
   createTodo("Make food", "I gotta have a good meal", new Date(), 2)
 );
+
 app.projArr[1].todoArr.push(
   createTodo("I will be deleted", "Goodbye!", new Date(), 0)
 );
+
+app.addProject();
 
 app.addTask();
 app.addTask("Better Cooler Project");
