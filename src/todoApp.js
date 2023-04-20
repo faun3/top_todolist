@@ -6,20 +6,22 @@ const appFactory = () => {
   let projArr = [];
 
   //default project when the app opens is called "Tasks"
-  projArr[0] = {
-    title: "Tasks",
-    todoArr: [],
-  };
-
   return { projArr };
 };
 
 const app = appFactory();
 
+app.projArr.push(createProject("Default Project"));
+
 app.projArr.push(createProject("Test proj 1"));
 app.projArr[1].todoArr.push(
-  createTodo("Make food", "I gotta have a good meal", new Date(), 0)
+  createTodo("Make food", "I gotta have a good meal", new Date(), 2)
 );
+app.projArr[1].todoArr.push(
+  createTodo("I will be deleted", "Goodbye!", new Date(), 0)
+);
+
+app.projArr[1].sortTodos();
 
 console.table(app.projArr);
 console.table(app.projArr[1].todoArr);
