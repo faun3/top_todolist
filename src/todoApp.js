@@ -15,7 +15,7 @@ const appFactory = () => {
 
   const addTask = (projectName) => {
     let todo = createTodo("New Todo", "Cool thing to do", new Date(), 1);
-    if (projectName === "") {
+    if (projectName === undefined) {
       projectName = "Tasks";
     }
 
@@ -47,7 +47,7 @@ app.projArr[1].todoArr.push(
   createTodo("I will be deleted", "Goodbye!", new Date(), 0)
 );
 
-app.addTask("");
+app.addTask();
 app.addTask("Better Cooler Project");
 
 console.table(app.projArr);
