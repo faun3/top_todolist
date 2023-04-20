@@ -15,12 +15,9 @@ const appFactory = () => {
 
 const app = appFactory();
 
-app.projArr[1] = createProject("Test proj 1");
-app.projArr[1] = createTodo(
-  "Make food",
-  "I gotta have a good meal",
-  new Date(),
-  0
+app.projArr.push(createProject("Test proj 1"));
+app.projArr[1].todoArr.push(
+  createTodo("Make food", "I gotta have a good meal", new Date(), 0)
 );
 
 console.table(app.projArr);
