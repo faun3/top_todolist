@@ -1,19 +1,17 @@
 const createTodo = (title, description, dueDate, priority) => {
   let done = false;
-  let project = "";
 
   const setDone = () => {
     if (done === false) {
       done = true;
+      console.log("done was false");
+    } else {
+      done = false;
+      console.log("done was true");
     }
-    return;
   };
 
-  const setPrio = (newPrio) => {
-    priority = newPrio;
-  };
-
-  return { title, description, dueDate, priority, setDone, setPrio, project };
+  return { title, description, dueDate, priority, setDone };
 };
 
 export { createTodo };
