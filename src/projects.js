@@ -1,7 +1,6 @@
 const createProject = (title) => {
   let todoArr = [];
 
-  //a
   const sortTodos = () => {
     todoArr.sort((firstObj, secondObj) => {
       if (firstObj.priority < secondObj.priority) {
