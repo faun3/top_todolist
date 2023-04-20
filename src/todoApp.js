@@ -1,5 +1,6 @@
 import { createProject } from "./projects";
 import { createTodo } from "./todos";
+import "./style.css";
 
 const appFactory = () => {
   let projArr = [];
