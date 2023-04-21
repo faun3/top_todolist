@@ -16,7 +16,14 @@ const appViewFactory = () => {
       let projTitle = document.createElement("p");
       projTitle.textContent = `${projArr[i].title}`;
 
+      let expandButton = document.createElement("button");
+      expandButton.innerHTML = `
+        <span class="material-symbols-outlined">
+            arrow_outward
+        </span>`;
+
       projCard.appendChild(projTitle);
+      projCard.appendChild(expandButton);
 
       projDiv.appendChild(projCard);
 
