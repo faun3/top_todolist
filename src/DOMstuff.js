@@ -35,6 +35,7 @@ const appViewFactory = () => {
       projTitle.textContent = `${projArr[i].title}`;
 
       let expandButton = document.createElement("button");
+      expandButton.setAttribute("id", "expandButton");
       expandButton.innerHTML = `
         <span class="material-symbols-outlined">
             arrow_outward
@@ -59,6 +60,7 @@ const appViewFactory = () => {
     bigTitle.setAttribute("class", "titleDiv");
 
     const backButton = document.createElement("button");
+    backButton.setAttribute("id", "backButton");
     backButton.innerHTML = `
       <span class="material-symbols-outlined">
         arrow_back
@@ -99,6 +101,7 @@ const appViewFactory = () => {
       descContainer.appendChild(taskDesc);
 
       let taskExpand = document.createElement("button");
+      taskExpand.setAttribute("id", "expandButton");
       taskExpand.innerHTML = `
         <span class="material-symbols-outlined">
             expand_more
@@ -125,6 +128,7 @@ const appViewFactory = () => {
       });
 
       let taskDelete = document.createElement("button");
+      taskDelete.setAttribute("id", "deleteButton");
       taskDelete.innerHTML = `
         <span class="material-symbols-outlined">
           delete
@@ -140,8 +144,14 @@ const appViewFactory = () => {
 
       taskControls.appendChild(taskTitle);
       taskControls.appendChild(taskDue);
-      taskControls.appendChild(taskExpand);
-      taskControls.appendChild(taskDelete);
+
+      let taskControlsRight = document.createElement("div");
+      taskControlsRight.setAttribute("div", "taskControlsRight");
+
+      taskControlsRight.appendChild(taskExpand);
+      taskControlsRight.appendChild(taskDelete);
+
+      taskControls.appendChild(taskControlsRight);
 
       taskCard.appendChild(taskControls);
       taskCard.appendChild(descContainer);
