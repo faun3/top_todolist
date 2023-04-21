@@ -43,6 +43,7 @@ const appFactory = () => {
 const app = appFactory();
 const appView = appViewFactory();
 
+//add content
 app.projArr.push(createProject("Test proj 1"));
 app.projArr[1].todoArr.push(
   createTodo("Make food", "I gotta have a good meal", new Date(), 2)
@@ -55,6 +56,7 @@ app.projArr[1].todoArr.push(
 console.table(app.projArr);
 
 appView.renderProjects(app.projArr);
+
 //appView.clearRender();
 
 //TODO creation
