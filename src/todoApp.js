@@ -1,6 +1,7 @@
 import { createProject } from "./projects";
 import { createTodo } from "./todos";
 import "./style.css";
+import { appViewFactory } from "./DOMstuff";
 
 const appFactory = () => {
   let projArr = [];
@@ -40,6 +41,7 @@ const appFactory = () => {
 };
 
 const app = appFactory();
+const appView = appViewFactory();
 
 app.projArr.push(createProject("Test proj 1"));
 app.projArr[1].todoArr.push(
@@ -50,11 +52,9 @@ app.projArr[1].todoArr.push(
   createTodo("I will be deleted", "Goodbye!", new Date(), 0)
 );
 
-app.addTask();
-
-app.projArr[0].todoArr[0].setDone();
-
 console.table(app.projArr);
+
+appView.renderProjects(app.projArr);
 
 //TODO creation
 //
