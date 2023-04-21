@@ -1,4 +1,5 @@
 const appViewFactory = () => {
+  let arrayCopy;
   const rootNode = document.querySelector("#app");
   //navbar thing that has a notch in the middle with the name of the app
   //    think new macbooks
@@ -40,7 +41,7 @@ const appViewFactory = () => {
         </span>`;
       expandButton.addEventListener("click", () => {
         clearRender();
-        projExpander(projArr[i]);
+        projExpander(projArr, i);
         console.log(`expanded project ${i}`);
       });
 
@@ -53,7 +54,7 @@ const appViewFactory = () => {
     }
   };
 
-  const projExpander = (project) => {
+  const projExpander = (projArr, poz) => {
     const bigTitle = document.createElement("div");
     bigTitle.setAttribute("class", "titleDiv");
 
@@ -65,23 +66,23 @@ const appViewFactory = () => {
     `;
     backButton.addEventListener("click", () => {
       clearRender();
-      renderProjects(app.projArr);
+      renderProjects(projArr);
     });
 
     const projTitle = document.createElement("p");
-    projTitle.textContent = project.title;
+    projTitle.textContent = projArr[poz].title;
 
     bigTitle.appendChild(backButton);
     bigTitle.appendChild(projTitle);
 
     const taskContainer = document.createElement("div");
-    for (let i = 0; i < project.todoArr.length; i++) {
+    for (let i = 0; i < projArr[poz].todoArr.length; i++) {
       let taskCard = document.createElement("div");
 
       let taskControls = document.createElement("div");
 
       let taskTitle = document.createElement("p");
-      taskTitle.textContent = project.todoArr[i].title;
+      taskTitle.textContent = projArr[poz].todoArr[i].title;
 
       let taskDue = document.createElement("p");
       taskDue.textContent = ""; //need to format date to be readable
@@ -90,7 +91,7 @@ const appViewFactory = () => {
       descContainer.setAttribute("class", "descContainer");
 
       let taskDesc = document.createElement("p");
-      taskDesc.textContent = project.description;
+      taskDesc.textContent = projArr[poz].description;
 
       let taskExpand = document.createElement("button");
       taskExpand.innerHTML = `
@@ -126,10 +127,10 @@ const appViewFactory = () => {
       `;
 
       taskDelete.addEventListener("click", () => {
-        project.todoArr.splice(i, 1);
-        project.sortTodos();
+        projArr[poz].todoArr.splice(i, 1);
+        projArr[poz].sortTodos();
         clearRender();
-        projExpander(project);
+        projExpander(projArr[poz]);
       });
 
       taskControls.appendChild(taskTitle);
