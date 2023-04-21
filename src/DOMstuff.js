@@ -128,6 +128,7 @@ const appViewFactory = () => {
       taskDelete.addEventListener("click", () => {
         project.todoArr.splice(i, 1);
         project.sortTodos();
+        clearRender();
         projExpander(project);
       });
 
