@@ -14,6 +14,10 @@ const appViewFactory = () => {
 
   //our append point is the appBody where we render all content
 
+  const clearRender = () => {
+    appBody.replaceChildren();
+  };
+
   const renderProjects = (projArr) => {
     const projDiv = document.createElement("div");
     projDiv.setAttribute("class", "allProj");
@@ -34,6 +38,11 @@ const appViewFactory = () => {
         <span class="material-symbols-outlined">
             arrow_outward
         </span>`;
+      expandButton.addEventListener("click", () => {
+        clearRender();
+        projExpander(projArr[i]);
+        console.log(`expanded project ${i}`);
+      });
 
       projCard.appendChild(projTitle);
       projCard.appendChild(expandButton);
@@ -45,10 +54,86 @@ const appViewFactory = () => {
   };
 
   const projExpander = (project) => {
-    let bigTitle = document.createElement("div");
-    bigTitle.textContent = project.title;
+    const bigTitle = document.createElement("div");
+    bigTitle.setAttribute("class", "titleDiv");
+
+    const backButton = document.createElement("button");
+    backButton.innerHTML = `
+      <span class="material-symbols-outlined">
+        arrow_back
+      </span>
+    `;
+    backButton.addEventListener("click", () => {
+      clearRender();
+      renderProjects(app.projArr);
+    });
+
+    const projTitle = document.createElement("p");
+    projTitle.textContent = project.title;
+
+    bigTitle.appendChild(backButton);
+    bigTitle.appendChild(projTitle);
+
+    const taskContainer = document.createElement("div");
+    for (let i = 0; i < project.todoArr.length; i++) {
+      let taskCard = document.createElement("div");
+
+      let taskControls = document.createElement("div");
+
+      let taskTitle = document.createElement("p");
+      taskTitle.textContent = project.title;
+
+      let taskDue = document.createElement("p");
+      taskDue = ""; //need to format date to be readable
+
+      let descContainer = document.createElement("div");
+      descContainer.setAttribute("class", "descContainer");
+
+      let taskDesc = document.createElement("p");
+      taskDesc = project.description;
+
+      let taskExpand = document.createElement("button");
+      taskExpand.innerHTML = `
+        <span class="material-symbols-outlined">
+            expand_more
+        </span>
+      `;
+
+      taskExpand.addEventListener("click", () => {
+        //make description visible by toggling a class
+        descContainer.classList.toggle("visible");
+
+        //change the button icon to expand less after click
+        taskExpand.innerHTML = `
+          <span class="material-symbols-outlined">
+            expand_less
+          </span>
+        `;
+      });
+
+      let taskDelete = document.createElement("button");
+      taskDelete.innerHTML = `
+        <span class="material-symbols-outlined">
+          delete
+        </span>
+      `;
+
+      taskDelete.addEventListener("click", () => {
+        project.todoArr.splice(i, 1);
+        project.sortTodos();
+        projExpander(project);
+      });
+
+      taskControls.taskCard.appendChild(taskTitle);
+      taskCard.appendChild(taskDue);
+      taskCard.appendChild;
+
+      taskContainer.appendChild(taskCard);
+
+      appBody.appendChild(taskContainer);
+    }
   };
 
-  return { projExpander, renderProjects };
+  return { projExpander, renderProjects, clearRender };
 };
 export { appViewFactory };
