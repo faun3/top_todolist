@@ -152,6 +152,11 @@ const appViewFactory = () => {
     appBody.appendChild(taskContainer);
   };
 
+  const drawAddButton = () => {
+    const addButton = document.createElement("button");
+    addButton.setAttribute("id", "addButton");
+  };
+
   return { projExpander, renderProjects, clearRender };
 };
 export { appViewFactory };
