@@ -135,7 +135,7 @@ const appViewFactory = () => {
         projArr[poz].todoArr.splice(i, 1);
         projArr[poz].sortTodos();
         clearRender();
-        projExpander(projArr[poz]);
+        projExpander(projArr, poz);
       });
 
       taskControls.appendChild(taskTitle);
@@ -147,10 +147,9 @@ const appViewFactory = () => {
       taskCard.appendChild(descContainer);
 
       taskContainer.appendChild(taskCard);
-
-      appBody.appendChild(bigTitle);
-      appBody.appendChild(taskContainer);
     }
+    appBody.appendChild(bigTitle);
+    appBody.appendChild(taskContainer);
   };
 
   return { projExpander, renderProjects, clearRender };
