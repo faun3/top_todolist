@@ -1,10 +1,23 @@
 const appViewFactory = () => {
-  let rootNode = document.querySelector("#app");
-  const projExpander = () => {};
+  const rootNode = document.querySelector("#app");
+  //navbar thing that has a notch in the middle with the name of the app
+  //    think new macbooks
+  const topBar = document.createElement("div");
+  topBar.setAttribute("class", "topBar");
+  topBar.textContent = "dodo";
+
+  let appBody = document.createElement("div");
+  appBody.setAttribute("class", "appBody");
+
+  rootNode.appendChild(topBar);
+  rootNode.appendChild(appBody);
+
+  //our append point is the appBody where we render all content
 
   const renderProjects = (projArr) => {
     const projDiv = document.createElement("div");
     projDiv.setAttribute("class", "allProj");
+
     for (let i = 0; i < projArr.length; i++) {
       //create a card div for every project
       //  projects cards will only contain their title, aligned to the left
@@ -27,9 +40,15 @@ const appViewFactory = () => {
 
       projDiv.appendChild(projCard);
 
-      rootNode.appendChild(projDiv);
+      appBody.appendChild(projDiv);
     }
   };
+
+  const projExpander = (project) => {
+    let bigTitle = document.createElement("div");
+    bigTitle.textContent = project.title;
+  };
+
   return { projExpander, renderProjects };
 };
 export { appViewFactory };
