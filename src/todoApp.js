@@ -55,6 +55,7 @@ app.projArr[1].todoArr.push(
 console.table(app.projArr);
 
 appView.renderProjects(app.projArr);
+//appView.clearRender();
 
 //TODO creation
 //
