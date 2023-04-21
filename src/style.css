@@ -1,7 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .topBar {
   background-color: #ed9521;
   color: white;
   text-align: center;
+}
+
+.appBody {
+  padding: 5%;
+}
+
+.projCard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleDiv {
+  display: flex;
+}
+
+.taskControls {
+  display: flex;
+  justify-content: space-between;
+}
+
+#expandButton {
+  border: 0;
+  background: transparent;
+}
+
+#backButton {
+  border: 0;
+  background: transparent;
+}
+
+#deleteButton {
+  border: 0;
+  background: transparent;
 }
 
 .projCard {
