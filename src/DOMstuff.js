@@ -76,10 +76,13 @@ const appViewFactory = () => {
     bigTitle.appendChild(projTitle);
 
     const taskContainer = document.createElement("div");
+    taskContainer.setAttribute("class", "taskContainer");
     for (let i = 0; i < projArr[poz].todoArr.length; i++) {
       let taskCard = document.createElement("div");
+      taskCard.setAttribute("class", "taskCard");
 
       let taskControls = document.createElement("div");
+      taskControls.setAttribute("class", "taskControls");
 
       let taskTitle = document.createElement("p");
       taskTitle.textContent = projArr[poz].todoArr[i].title;
@@ -91,7 +94,9 @@ const appViewFactory = () => {
       descContainer.setAttribute("class", "descContainer");
 
       let taskDesc = document.createElement("p");
-      taskDesc.textContent = projArr[poz].description;
+      taskDesc.textContent = projArr[poz].todoArr[i].description;
+
+      descContainer.appendChild(taskDesc);
 
       let taskExpand = document.createElement("button");
       taskExpand.innerHTML = `
@@ -139,7 +144,7 @@ const appViewFactory = () => {
       taskControls.appendChild(taskDelete);
 
       taskCard.appendChild(taskControls);
-      taskCard.appendChild(taskDesc);
+      taskCard.appendChild(descContainer);
 
       taskContainer.appendChild(taskCard);
 
