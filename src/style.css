@@ -10,3 +10,11 @@
   align-items: space-between;
   gap: 5%;
 }
+
+.descContainer {
+  display: none;
+}
+
+.descContainer .visible {
+  display: block;
+}
