@@ -81,16 +81,16 @@ const appViewFactory = () => {
       let taskControls = document.createElement("div");
 
       let taskTitle = document.createElement("p");
-      taskTitle.textContent = project.title;
+      taskTitle.textContent = project.todoArr[i].title;
 
       let taskDue = document.createElement("p");
-      taskDue = ""; //need to format date to be readable
+      taskDue.textContent = ""; //need to format date to be readable
 
       let descContainer = document.createElement("div");
       descContainer.setAttribute("class", "descContainer");
 
       let taskDesc = document.createElement("p");
-      taskDesc = project.description;
+      taskDesc.textContent = project.description;
 
       let taskExpand = document.createElement("button");
       taskExpand.innerHTML = `
@@ -104,11 +104,18 @@ const appViewFactory = () => {
         descContainer.classList.toggle("visible");
 
         //change the button icon to expand less after click
-        taskExpand.innerHTML = `
-          <span class="material-symbols-outlined">
-            expand_less
-          </span>
+        if (descContainer.classList.contains("visible")) {
+          taskExpand.innerHTML = `
+            <span class="material-symbols-outlined">
+              expand_less
+            </span>
         `;
+        } else {
+          taskExpand.innerHTML = `
+            <span class="material-symbols-outlined">
+              expand_more
+            </span>`;
+        }
       });
 
       let taskDelete = document.createElement("button");
@@ -124,12 +131,17 @@ const appViewFactory = () => {
         projExpander(project);
       });
 
-      taskControls.taskCard.appendChild(taskTitle);
-      taskCard.appendChild(taskDue);
-      taskCard.appendChild;
+      taskControls.appendChild(taskTitle);
+      taskControls.appendChild(taskDue);
+      taskControls.appendChild(taskExpand);
+      taskControls.appendChild(taskDelete);
+
+      taskCard.appendChild(taskControls);
+      taskCard.appendChild(taskDesc);
 
       taskContainer.appendChild(taskCard);
 
+      appBody.appendChild(bigTitle);
       appBody.appendChild(taskContainer);
     }
   };
