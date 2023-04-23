@@ -6,26 +6,29 @@ const appViewFactory = () => {
   //navbar thing that has a notch in the middle with the name of the app
   //    think new macbooks
 
-  const topBarContainer = document.createElement("div");
-  topBarContainer.setAttribute("class", "topBarContainer");
-
-  const topBar = document.createElement("div");
-  topBar.setAttribute("class", "topBar");
-
-  const topBarText = document.createElement("p");
-  topBarText.textContent = "DODO";
-
-  topBar.appendChild(topBarText);
-
-  topBarContainer.appendChild(topBar);
-
+  //our append point is the appBody where we render all content except
+  //  for fixed elements like the top bar (this is in preaparation for
+  //  future styling of the top notch element)
   let appBody = document.createElement("div");
   appBody.setAttribute("class", "appBody");
 
-  rootNode.appendChild(topBarContainer);
-  rootNode.appendChild(appBody);
+  const drawIndependents = () => {
+    const topBarContainer = document.createElement("div");
+    topBarContainer.setAttribute("class", "topBarContainer");
 
-  //our append point is the appBody where we render all content
+    const topBar = document.createElement("div");
+    topBar.setAttribute("class", "topBar");
+
+    const topBarText = document.createElement("p");
+    topBarText.textContent = "DODO";
+
+    topBar.appendChild(topBarText);
+
+    topBarContainer.appendChild(topBar);
+
+    rootNode.appendChild(topBarContainer);
+    rootNode.appendChild(appBody);
+  };
 
   const clearRender = () => {
     appBody.replaceChildren();
@@ -177,7 +180,7 @@ const appViewFactory = () => {
     addButton.setAttribute("id", "addButton");
   };
 
-  return { projExpander, renderProjects, clearRender };
+  return { projExpander, renderProjects, clearRender, drawIndependents };
 };
 export { appViewFactory };
 export const locales = ["en-US"];
