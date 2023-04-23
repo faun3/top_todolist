@@ -199,10 +199,6 @@ const appViewFactory = (projArr) => {
     appBody.appendChild(taskContainer);
   };
 
-  function dateIsValid(date) {
-    return !Number.isNaN(new Date(date).getTime());
-  }
-
   const renderForm = () => {
     const formPopup = document.createElement("div");
     formPopup.setAttribute("id", "popupForm");
@@ -274,6 +270,7 @@ const appViewFactory = (projArr) => {
       let taskPriority = document.querySelector("#taskPriority").value;
 
       let found = false;
+      let renderPos = 0;
 
       let createdTask = createTodo(
         taskName,
@@ -287,7 +284,6 @@ const appViewFactory = (projArr) => {
           projArr[i].todoArr.push(createdTask);
           formPopup.classList.toggle("hidden");
           clearRender();
-          projExpander(i);
           found = true;
           break;
         }
@@ -300,6 +296,8 @@ const appViewFactory = (projArr) => {
         formPopup.classList.toggle("hidden");
         clearRender();
         projExpander(projArr.length - 1);
+      } else {
+        projExpander(renderPos);
       }
     });
   };
