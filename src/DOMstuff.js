@@ -28,6 +28,11 @@ const appViewFactory = () => {
 
     rootNode.appendChild(topBarContainer);
     rootNode.appendChild(appBody);
+
+    const addButton = document.createElement("button");
+    addButton.setAttribute("id", "addButton");
+    addButton.textContent = "+";
+    appBody.appendChild(addButton);
   };
 
   const clearRender = () => {
@@ -175,10 +180,7 @@ const appViewFactory = () => {
     appBody.appendChild(taskContainer);
   };
 
-  const drawAddButton = () => {
-    const addButton = document.createElement("button");
-    addButton.setAttribute("id", "addButton");
-  };
+  const taskAdder = () => {};
 
   return { projExpander, renderProjects, clearRender, drawIndependents };
 };
