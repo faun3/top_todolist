@@ -186,6 +186,7 @@ const appViewFactory = () => {
   const renderForm = () => {
     const formPopup = document.createElement("div");
     formPopup.setAttribute("id", "popupForm");
+    formPopup.setAttribute("class", "hidden");
 
     const form = document.createElement("form");
     form.innerHTML = `
@@ -231,6 +232,11 @@ const appViewFactory = () => {
     formPopup.appendChild(form);
 
     appBody.appendChild(formPopup);
+
+    const closeFormBtn = document.querySelector("#closeForm");
+    closeFormBtn.addEventListener("click", () => {
+      formPopup.classList.toggle("hidden");
+    });
   };
 
   const renderNewTask = () => {};
