@@ -1,3 +1,7 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -30,16 +34,25 @@ body {
 #expandButton {
   border: 0;
   background: transparent;
+  align-self: center;
 }
 
 #backButton {
   border: 0;
   background: transparent;
+  align-self: center;
 }
 
 #deleteButton {
   border: 0;
   background: transparent;
+  align-self: center;
+}
+
+.titleDiv p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding-left: 5%;
 }
 
 .projCard {
