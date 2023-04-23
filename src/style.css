@@ -104,10 +104,13 @@ body {
   position: absolute;
   top: 50%;
   bottom: 50%;
-  display: none;
   z-index: 9;
   width: 50%;
   height: 60%;
+}
+
+#popupForm.hidden {
+  display: none;
 }
 
 #popupForm form {
@@ -120,6 +123,9 @@ body {
   border-radius: 100%;
   cursor: pointer;
   aspect-ratio: 1/1;
+  margin: 0;
+  text-align: center;
+  border: 0;
 }
 
 #closeForm {
@@ -128,6 +134,9 @@ body {
   border-radius: 100%;
   cursor: pointer;
   aspect-ratio: 1/1;
+  margin: 0;
+  text-align: center;
+  border: 0;
 }
 
 .titleDiv p {
