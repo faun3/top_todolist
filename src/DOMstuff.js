@@ -32,6 +32,10 @@ const appViewFactory = (projArr) => {
     rootNode.appendChild(topBarContainer);
     rootNode.appendChild(appBody);
 
+    drawAddButton();
+  };
+
+  const drawAddButton = () => {
     const addButton = document.createElement("button");
     addButton.setAttribute("id", "addButton");
     addButton.addEventListener("click", () => {
@@ -43,6 +47,7 @@ const appViewFactory = (projArr) => {
 
   const clearRender = () => {
     appBody.replaceChildren();
+    drawAddButton();
   };
 
   const renderProjects = () => {
