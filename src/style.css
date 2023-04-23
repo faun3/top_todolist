@@ -7,10 +7,32 @@ body {
   padding: 0;
 }
 
+.topBarContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
 .topBar {
   background-color: #ed9521;
   color: white;
   text-align: center;
+  width: 40%;
+  height: 3rem;
+  border-bottom-right-radius: 40px;
+  border-bottom-left-radius: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+.topBar p {
+  margin: 0;
+  font-size: 200%;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  align-self: center;
+  justify-self: center;
 }
 
 .appBody {
