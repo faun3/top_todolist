@@ -57,6 +57,7 @@ console.table(app.projArr);
 
 appView.drawIndependents();
 appView.renderProjects(app.projArr);
+appView.renderForm();
 
 //appView.clearRender();
 
