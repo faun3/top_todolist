@@ -104,11 +104,30 @@ body {
   position: absolute;
   top: 50%;
   bottom: 50%;
+  display: none;
   z-index: 9;
+  width: 50%;
+  height: 60%;
 }
 
 #popupForm form {
   display: block;
+}
+
+#submitForm {
+  background-color: #17d44a;
+  color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  aspect-ratio: 1/1;
+}
+
+#closeForm {
+  background-color: red;
+  color: white;
+  border-radius: 100%;
+  cursor: pointer;
+  aspect-ratio: 1/1;
 }
 
 .titleDiv p {
