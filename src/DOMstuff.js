@@ -1,3 +1,6 @@
+import { format } from "date-fns";
+import { enUS } from "date-fns/locale";
+
 const appViewFactory = () => {
   let arrayCopy;
   const rootNode = document.querySelector("#app");
@@ -24,10 +27,6 @@ const appViewFactory = () => {
     projDiv.setAttribute("class", "allProj");
 
     for (let i = 0; i < projArr.length; i++) {
-      //create a card div for every project
-      //  projects cards will only contain their title, aligned to the left
-      //  and an "expand" button aligned to the right that re-renders the
-      //  current page, showing all of that project's to-dos
       let projCard = document.createElement("div");
       projCard.setAttribute("class", "projCard");
 
@@ -90,7 +89,9 @@ const appViewFactory = () => {
       taskTitle.textContent = projArr[poz].todoArr[i].title;
 
       let taskDue = document.createElement("p");
-      taskDue.textContent = ""; //need to format date to be readable
+      taskDue.textContent = format(projArr[poz].todoArr[i].dueDate, "PPPP", {
+        locale: enUS,
+      });
 
       let descContainer = document.createElement("div");
       descContainer.setAttribute("class", "descContainer");
