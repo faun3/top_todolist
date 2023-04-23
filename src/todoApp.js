@@ -41,7 +41,7 @@ const appFactory = () => {
 };
 
 const app = appFactory();
-const appView = appViewFactory();
+const appView = appViewFactory(app.projArr);
 
 //add content
 app.projArr.push(createProject("Test proj 1"));
@@ -56,7 +56,7 @@ app.projArr[1].todoArr.push(
 console.table(app.projArr);
 
 appView.drawIndependents();
-appView.renderProjects(app.projArr);
+appView.renderProjects();
 appView.renderForm();
 
 //appView.clearRender();
