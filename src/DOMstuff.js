@@ -5,14 +5,24 @@ const appViewFactory = () => {
   const rootNode = document.querySelector("#app");
   //navbar thing that has a notch in the middle with the name of the app
   //    think new macbooks
+
+  const topBarContainer = document.createElement("div");
+  topBarContainer.setAttribute("class", "topBarContainer");
+
   const topBar = document.createElement("div");
   topBar.setAttribute("class", "topBar");
-  topBar.textContent = "dodo";
+
+  const topBarText = document.createElement("p");
+  topBarText.textContent = "DODO";
+
+  topBar.appendChild(topBarText);
+
+  topBarContainer.appendChild(topBar);
 
   let appBody = document.createElement("div");
   appBody.setAttribute("class", "appBody");
 
-  rootNode.appendChild(topBar);
+  rootNode.appendChild(topBarContainer);
   rootNode.appendChild(appBody);
 
   //our append point is the appBody where we render all content
