@@ -213,7 +213,19 @@ const appViewFactory = () => {
     <label for="taskPriority">
       <strong>Priority (0, 1, ... in order of importance)</strong>
     </label>
-    <input type="number" id="taskPriority" placeholder="0" name="taskPriority" required>
+    <input type="number" id="taskPriority" placeholder="0" name="taskPriority" min="0" max="15" required>
+
+    <button type="submit" id="submitForm">
+      <span class="material-symbols-outlined">
+        done
+      </span>
+    </button>
+
+    <button type="button" id="closeForm">
+      <span class="material-symbols-outlined">
+        close
+      </span>
+    </button>
     `;
 
     formPopup.appendChild(form);
