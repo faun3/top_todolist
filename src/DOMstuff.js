@@ -39,6 +39,11 @@ const appViewFactory = (projArr) => {
     const addButton = document.createElement("button");
     addButton.setAttribute("id", "addButton");
     addButton.addEventListener("click", () => {
+      console.log("cool");
+      const oldForm = document.querySelector("#popupForm");
+      if (oldForm) {
+        appBody.removeChild(oldForm);
+      }
       renderForm();
     });
     addButton.textContent = "+";
@@ -70,7 +75,6 @@ const appViewFactory = (projArr) => {
       expandButton.addEventListener("click", () => {
         clearRender();
         projExpander(i);
-        console.log(`expanded project ${i}`);
       });
 
       projCard.appendChild(projTitle);
