@@ -12,6 +12,14 @@ body {
   width: 100vw;
 }
 
+.allProj {
+  overflow-y: auto;
+}
+
+.taskContainer {
+  overflow-y: auto;
+}
+
 .topBarContainer {
   display: flex;
   flex-flow: row nowrap;
@@ -74,6 +82,22 @@ body {
   border: 0;
   background: transparent;
   align-self: center;
+}
+
+#addButton {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  margin: 0;
+  background-color: #17d44a;
+  color: white;
+  border-radius: 100%;
+  aspect-ratio: 1/1;
+  width: 4.5rem;
+  font-size: 150%;
+  cursor: pointer;
+  outline: none;
+  border: 0;
 }
 
 .titleDiv p {
