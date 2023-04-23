@@ -31,6 +31,9 @@ const appViewFactory = () => {
 
     const addButton = document.createElement("button");
     addButton.setAttribute("id", "addButton");
+    addButton.addEventListener("click", () => {
+      taskAdder();
+    });
     addButton.textContent = "+";
     appBody.appendChild(addButton);
   };
@@ -180,9 +183,54 @@ const appViewFactory = () => {
     appBody.appendChild(taskContainer);
   };
 
-  const taskAdder = () => {};
+  const renderForm = () => {
+    const formPopup = document.createElement("div");
+    formPopup.setAttribute("id", "popupForm");
 
-  return { projExpander, renderProjects, clearRender, drawIndependents };
+    const form = document.createElement("form");
+    form.innerHTML = `
+    <p>Add Task</p>
+    <label for="taskName">
+      <strong>Task name</strong>
+    </label>
+    <input type="text" id="taskName" placeholder="Coolest thing ever" name="taskName" required>
+
+    <label for="taskDescription">
+      <strong>Description</strong>
+    </label>
+    <textarea type="description" id="taskDescription" name="taskDescription">Must also tell mom about this cool thing I just did. Then all my friends too.</textarea>
+
+    <label for="taskDueDate">
+      <strong>Due date</strong>
+    </label>
+    <input type="datetime-local" name="taskDueDate" id="taskDueDate">
+
+    <label for="taskProject">
+      <strong>Project</strong>
+    </label>
+    <input type="text" id="taskProject" placeholder="Spaceship" name="taskProject" required>
+
+    <label for="taskPriority">
+      <strong>Priority (0, 1, ... in order of importance)</strong>
+    </label>
+    <input type="number" id="taskPriority" placeholder="0" name="taskPriority" required>
+    `;
+
+    formPopup.appendChild(form);
+
+    appBody.appendChild(formPopup);
+  };
+
+  const renderNewTask = () => {};
+
+  return {
+    projExpander,
+    renderProjects,
+    clearRender,
+    drawIndependents,
+    renderForm,
+    renderNewTask,
+  };
 };
 export { appViewFactory };
 export const locales = ["en-US"];
