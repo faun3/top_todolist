@@ -1,7 +1,10 @@
 import { format } from "date-fns";
+import { createProject } from "./projects";
+import { createTodo } from "./todos";
+import { parseISO } from "date-fns";
 import { enUS } from "date-fns/locale";
 
-const appViewFactory = () => {
+const appViewFactory = (projArr) => {
   const rootNode = document.querySelector("#app");
   //navbar thing that has a notch in the middle with the name of the app
   //    think new macbooks
@@ -32,7 +35,7 @@ const appViewFactory = () => {
     const addButton = document.createElement("button");
     addButton.setAttribute("id", "addButton");
     addButton.addEventListener("click", () => {
-      taskAdder();
+      renderForm();
     });
     addButton.textContent = "+";
     appBody.appendChild(addButton);
@@ -42,7 +45,7 @@ const appViewFactory = () => {
     appBody.replaceChildren();
   };
 
-  const renderProjects = (projArr) => {
+  const renderProjects = () => {
     const projDiv = document.createElement("div");
     projDiv.setAttribute("class", "allProj");
 
@@ -61,7 +64,7 @@ const appViewFactory = () => {
         </span>`;
       expandButton.addEventListener("click", () => {
         clearRender();
-        projExpander(projArr, i);
+        projExpander(i);
         console.log(`expanded project ${i}`);
       });
 
@@ -74,7 +77,7 @@ const appViewFactory = () => {
     }
   };
 
-  const projExpander = (projArr, poz) => {
+  const projExpander = (poz) => {
     const bigTitle = document.createElement("div");
     bigTitle.setAttribute("class", "titleDiv");
 
@@ -87,7 +90,7 @@ const appViewFactory = () => {
     `;
     backButton.addEventListener("click", () => {
       clearRender();
-      renderProjects(projArr);
+      renderProjects();
     });
 
     const projTitle = document.createElement("p");
@@ -160,7 +163,7 @@ const appViewFactory = () => {
         projArr[poz].todoArr.splice(i, 1);
         projArr[poz].sortTodos();
         clearRender();
-        projExpander(projArr, poz);
+        projExpander(poz);
       });
 
       taskControls.appendChild(taskTitle);
@@ -236,6 +239,54 @@ const appViewFactory = () => {
     const closeFormBtn = document.querySelector("#closeForm");
     closeFormBtn.addEventListener("click", () => {
       formPopup.classList.toggle("hidden");
+    });
+
+    const sendButton = document.querySelector("#submitForm");
+    sendButton.addEventListener("click", () => {
+      event.preventDefault();
+      let taskName = document.querySelector("#taskName").textContent;
+      let taskDescription =
+        document.querySelector("#taskDescription").textContent;
+      let taskDueDate = format(
+        parseISO(document.querySelector("#taskDueDate").textContent),
+        "PPPP",
+        { locale: enUS }
+      );
+      let taskPriority = toNumber(
+        document.querySelector("#taskPriority").textContent
+      );
+
+      let found = false;
+
+      let createdTask = createTodo(
+        taskName,
+        taskDescription,
+        taskDueDate,
+        taskPriority
+      );
+
+      for (let i = 0; i < projArr.length; i++) {
+        if (
+          projArr[i].title ===
+          document.querySelector("#taskProject").textContent
+        ) {
+          projArr[i].todoArr.push(createdTask);
+          formPopup.classList.toggle("hidden");
+          clearRender();
+          projExpander(i);
+          found = true;
+          break;
+        }
+      }
+      if (found === false) {
+        projArr.push(
+          createProject(document.querySelector("#taskProject").textContent)
+        );
+        projArr[projArr.length - 1].todoArr.push(createdTask);
+        formPopup.classList.toggle("hidden");
+        clearRender();
+        projExpander(projArr.length - 1);
+      }
     });
   };
 
