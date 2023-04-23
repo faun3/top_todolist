@@ -1,3 +1,6 @@
+import webpack from "webpack";
+import { locales } from "./src/DOMstuff";
+
 const path = require("path");
 
 module.exports = {
@@ -15,4 +18,13 @@ module.exports = {
       },
     ],
   },
+};
+
+export default config = {
+  plugins: [
+    new webpack.ContextReplacementPlugin(
+      /^date-fns[/\\]locales$/,
+      new RegExp(`\\.[/\\\\](${locales.join("|")})[/\\\\]index\\.js$`)
+    ),
+  ],
 };

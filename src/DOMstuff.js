@@ -2,7 +2,6 @@ import { format } from "date-fns";
 import { enUS } from "date-fns/locale";
 
 const appViewFactory = () => {
-  let arrayCopy;
   const rootNode = document.querySelector("#app");
   //navbar thing that has a notch in the middle with the name of the app
   //    think new macbooks
@@ -171,3 +170,4 @@ const appViewFactory = () => {
   return { projExpander, renderProjects, clearRender };
 };
 export { appViewFactory };
+export const locales = ["en-US"];
