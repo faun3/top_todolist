@@ -45,6 +45,7 @@ const appViewFactory = (projArr) => {
         appBody.removeChild(oldForm);
       }
       renderForm();
+      document.querySelector("#popupForm").classList.toggle("hidden");
     });
     addButton.textContent = "+";
     appBody.appendChild(addButton);
@@ -110,6 +111,9 @@ const appViewFactory = (projArr) => {
 
     const taskContainer = document.createElement("div");
     taskContainer.setAttribute("class", "taskContainer");
+
+    projArr[poz].sortTodos();
+
     for (let i = 0; i < projArr[poz].todoArr.length; i++) {
       let taskCard = document.createElement("div");
       taskCard.setAttribute("class", "taskCard");
@@ -195,6 +199,10 @@ const appViewFactory = (projArr) => {
     appBody.appendChild(taskContainer);
   };
 
+  function dateIsValid(date) {
+    return !Number.isNaN(new Date(date).getTime());
+  }
+
   const renderForm = () => {
     const formPopup = document.createElement("div");
     formPopup.setAttribute("id", "popupForm");
@@ -216,7 +224,7 @@ const appViewFactory = (projArr) => {
     <label for="taskDueDate">
       <strong>Due date</strong>
     </label>
-    <input type="datetime-local" name="taskDueDate" id="taskDueDate">
+    <input type="datetime-local" name="taskDueDate" id="taskDueDate" required>
 
     <label for="taskProject">
       <strong>Project</strong>
@@ -253,17 +261,17 @@ const appViewFactory = (projArr) => {
     const sendButton = document.querySelector("#submitForm");
     sendButton.addEventListener("click", () => {
       event.preventDefault();
-      let taskName = document.querySelector("#taskName").textContent;
-      let taskDescription =
-        document.querySelector("#taskDescription").textContent;
-      let taskDueDate = format(
-        parseISO(document.querySelector("#taskDueDate").textContent),
-        "PPPP",
-        { locale: enUS }
-      );
-      let taskPriority = toNumber(
-        document.querySelector("#taskPriority").textContent
-      );
+      //console.log(document.querySelector("#taskDueDate").value);
+      //console.log(parseISO(document.querySelector("#taskDueDate").value));
+      let taskName = document.querySelector("#taskName").value;
+      let taskDescription = document.querySelector("#taskDescription").value;
+
+      let dueAsDate = new Date();
+      dueAsDate = parseISO(document.querySelector("#taskDueDate").value);
+
+      let taskDueDate = format(dueAsDate, "PPPP", { locale: enUS });
+
+      let taskPriority = document.querySelector("#taskPriority").value;
 
       let found = false;
 
@@ -275,10 +283,7 @@ const appViewFactory = (projArr) => {
       );
 
       for (let i = 0; i < projArr.length; i++) {
-        if (
-          projArr[i].title ===
-          document.querySelector("#taskProject").textContent
-        ) {
+        if (projArr[i].title === document.querySelector("#taskProject").value) {
           projArr[i].todoArr.push(createdTask);
           formPopup.classList.toggle("hidden");
           clearRender();
@@ -289,7 +294,7 @@ const appViewFactory = (projArr) => {
       }
       if (found === false) {
         projArr.push(
-          createProject(document.querySelector("#taskProject").textContent)
+          createProject(document.querySelector("#taskProject").value)
         );
         projArr[projArr.length - 1].todoArr.push(createdTask);
         formPopup.classList.toggle("hidden");
