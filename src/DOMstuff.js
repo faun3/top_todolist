@@ -215,12 +215,12 @@ const appViewFactory = (projArr) => {
     <label for="taskName">
       <strong>Task name</strong>
     </label>
-    <input type="text" id="taskName" placeholder="Coolest thing ever" name="taskName" required>
+    <input type="text" id="taskName" placeholder="Coolest thing ever" name="taskName" minlength="3" required>
 
     <label for="taskDescription">
       <strong>Description</strong>
     </label>
-    <textarea type="description" id="taskDescription" name="taskDescription">Must also tell mom about this cool thing I just did. Then all my friends too.</textarea>
+    <textarea type="description" id="taskDescription" name="taskDescription"></textarea>
 
     <label for="taskDueDate">
       <strong>Due date</strong>
@@ -230,12 +230,12 @@ const appViewFactory = (projArr) => {
     <label for="taskProject">
       <strong>Project</strong>
     </label>
-    <input type="text" id="taskProject" placeholder="Spaceship" name="taskProject" required>
+    <input type="text" id="taskProject" placeholder="Spaceship" name="taskProject" value="Tasks" required>
 
     <label for="taskPriority">
       <strong>Priority (0, 1, ... in order of importance)</strong>
     </label>
-    <input type="number" id="taskPriority" placeholder="0" name="taskPriority" min="0" max="15" required>
+    <input type="number" id="taskPriority" placeholder="0" name="taskPriority" min="0" max="15" value="0" required>
 
     <button type="submit" id="submitForm">
       <span class="material-symbols-outlined">
@@ -265,10 +265,8 @@ const appViewFactory = (projArr) => {
       //console.log(document.querySelector("#taskDueDate").value);
       //console.log(parseISO(document.querySelector("#taskDueDate").value));
       let taskName = document.querySelector("#taskName").value;
-      let taskDescription = document.querySelector("#taskDescription").value;
 
-      //string in ISO format
-      console.log(document.querySelector("#taskDueDate").value);
+      let taskDescription = document.querySelector("#taskDescription").value;
 
       //Date object
       console.log(parseISO(document.querySelector("#taskDueDate").value));
@@ -290,6 +288,10 @@ const appViewFactory = (projArr) => {
       );
 
       for (let i = 0; i < projArr.length; i++) {
+        if (taskName.length < 3) {
+          alert("Task name must be 3 characters or longer!");
+          return;
+        }
         if (projArr[i].title === document.querySelector("#taskProject").value) {
           projArr[i].todoArr.push(createdTask);
           formPopup.classList.toggle("hidden");
@@ -300,14 +302,20 @@ const appViewFactory = (projArr) => {
         }
       }
       if (found === false) {
-        projArr.push(
-          createProject(document.querySelector("#taskProject").value)
-        );
-        projArr[projArr.length - 1].todoArr.push(createdTask);
-        formPopup.classList.toggle("hidden");
-        clearRender();
-        projExpander(projArr.length - 1);
-        //renderProjects();
+        if (document.querySelector("#taskProject").value === "") {
+          projArr[0].todoArr.push(createdTask);
+          formPopup.classList.toggle("hidden");
+          clearRender();
+          projExpander(0);
+        } else {
+          projArr.push(
+            createProject(document.querySelector("#taskProject").value)
+          );
+          projArr[projArr.length - 1].todoArr.push(createdTask);
+          formPopup.classList.toggle("hidden");
+          clearRender();
+          projExpander(projArr.length - 1);
+        }
       } else {
         projExpander(renderPos);
       }
