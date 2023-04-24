@@ -72,6 +72,12 @@ body {
   align-self: center;
 }
 
+#deleteProjButton {
+  border: 0;
+  background: transparent;
+  align-self: center;
+}
+
 #backButton {
   border: 0;
   background: transparent;
