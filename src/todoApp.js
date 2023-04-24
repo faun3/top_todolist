@@ -16,6 +16,14 @@ const appFactory = () => {
     projArr.push(createProject(name));
   };
 
+  const removeProject = (pos) => {
+    if (pos === 0) {
+      alert("Cannot remove default project!");
+    } else {
+      projArr.splice(pos, 1);
+    }
+  };
+
   const addTask = (projectName) => {
     let todo = createTodo("New Todo", "Cool thing to do", new Date(), 1);
     if (projectName === undefined) {
@@ -37,27 +45,10 @@ const appFactory = () => {
     }
   };
 
-  return { projArr, addProject, addTask };
+  return { projArr, addProject, addTask, removeProject };
 };
 
-const app = appFactory();
-const appView = appViewFactory(app.projArr);
-
-//add content
-app.projArr.push(createProject("Test proj 1"));
-app.projArr[1].todoArr.push(
-  createTodo("Make food", "I gotta have a good meal", new Date(), 2)
-);
-
-app.projArr[1].todoArr.push(
-  createTodo("I will be deleted", "Goodbye!", new Date(), 0)
-);
-
-console.table(app.projArr);
-
-appView.drawIndependents();
-appView.renderProjects();
-appView.renderForm();
+export { appFactory };
 
 //appView.clearRender();
 
