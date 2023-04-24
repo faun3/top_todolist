@@ -95,10 +95,15 @@ const appViewFactory = (projArr) => {
           "Deleted projects are gone FOREVER. Are you sure?"
         );
         if (isConfirmed === true) {
-          removeProject(i);
-          clearRender();
-          renderProjects();
-        } else return;
+          if (i === 0) {
+            alert("Default project cannot be deleted!");
+            return;
+          } else {
+            projArr.splice(i, 1);
+            clearRender();
+            renderProjects();
+          }
+        }
       });
 
       projControlsRight.appendChild(expandButton);
