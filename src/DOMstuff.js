@@ -266,6 +266,10 @@ const appViewFactory = (projArr) => {
     appBody.appendChild(taskContainer);
   };
 
+  const dateIsValid = (date) => {
+    return date instanceof Date && !isNaN(date);
+  };
+
   const renderForm = () => {
     const formPopup = document.createElement("div");
     formPopup.setAttribute("id", "popupForm");
@@ -330,12 +334,12 @@ const appViewFactory = (projArr) => {
 
       let taskDescription = document.querySelector("#taskDescription").value;
 
-      //Date object
-      console.log(parseISO(document.querySelector("#taskDueDate").value));
+      //default date is new
+      let taskDueDate = new Date();
 
-      let taskDueDate = parseISO(document.querySelector("#taskDueDate").value);
-
-      console.log(taskDueDate);
+      if (dateIsValid(document.querySelector("#taskDueDate").value)) {
+        taskDueDate = parseISO(document.querySelector("#taskDueDate").value);
+      }
 
       let taskPriority = document.querySelector("#taskPriority").value;
 
@@ -384,15 +388,12 @@ const appViewFactory = (projArr) => {
     });
   };
 
-  const renderNewTask = () => {};
-
   return {
     projExpander,
     renderProjects,
     clearRender,
     drawIndependents,
     renderForm,
-    renderNewTask,
   };
 };
 export { appViewFactory };
