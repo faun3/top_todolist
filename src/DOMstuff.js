@@ -3,7 +3,6 @@ import { createProject } from "./projects";
 import { createTodo } from "./todos";
 import { parseISO } from "date-fns";
 import { enUS } from "date-fns/locale";
-import { appFactory } from "./todoApp";
 
 const appViewFactory = (projArr) => {
   const rootNode = document.querySelector("#app");
@@ -152,6 +151,35 @@ const appViewFactory = (projArr) => {
       let taskControls = document.createElement("div");
       taskControls.setAttribute("class", "taskControls");
 
+      let taskLeft = document.createElement("div");
+      taskLeft.setAttribute("class", "taskLeft");
+
+      let checkButton = document.createElement("button");
+      checkButton.setAttribute("id", "checkButton");
+      checkButton.innerHTML = `
+      <span class="material-symbols-outlined">
+        radio_button_unchecked
+      </span>
+      `;
+      checkButton.addEventListener("click", () => {
+        checkButton.classList.toggle("done");
+        if (checkButton.classList.contains("done")) {
+          projArr[poz].todoArr[i].setDone();
+          checkButton.innerHTML = `
+          <span class="material-symbols-outlined">
+            check_circle
+          </span>
+          `;
+        } else {
+          projArr[poz].todoArr[i].setDone();
+          checkButton.innerHTML = `
+         <span class="material-symbols-outlined">
+           radio_button_unchecked
+         </span>
+          `;
+        }
+      });
+
       let taskTitle = document.createElement("p");
       taskTitle.textContent = projArr[poz].todoArr[i].title;
 
@@ -215,7 +243,10 @@ const appViewFactory = (projArr) => {
         projExpander(poz);
       });
 
-      taskControls.appendChild(taskTitle);
+      taskLeft.appendChild(checkButton);
+      taskLeft.appendChild(taskTitle);
+
+      taskControls.appendChild(taskLeft);
       taskControls.appendChild(taskDue);
 
       let taskControlsRight = document.createElement("div");
