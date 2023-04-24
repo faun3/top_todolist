@@ -88,6 +88,7 @@ body {
   border: 0;
   background: transparent;
   align-self: center;
+  color: darkred;
 }
 
 #addButton {
@@ -104,6 +105,17 @@ body {
   cursor: pointer;
   outline: none;
   border: 0;
+}
+
+#checkButton {
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  background: transparent;
+}
+
+#checkButton.done {
+  color: darkblue;
 }
 
 #popupForm {
@@ -156,6 +168,11 @@ body {
   flex-flow: row;
   align-items: space-between;
   gap: 5%;
+}
+
+.taskLeft {
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .descContainer {
