@@ -125,6 +125,7 @@ const appViewFactory = (projArr) => {
       taskTitle.textContent = projArr[poz].todoArr[i].title;
 
       let taskDue = document.createElement("p");
+
       taskDue.textContent = format(projArr[poz].todoArr[i].dueDate, "PPPP", {
         locale: enUS,
       });
@@ -262,10 +263,15 @@ const appViewFactory = (projArr) => {
       let taskName = document.querySelector("#taskName").value;
       let taskDescription = document.querySelector("#taskDescription").value;
 
-      let dueAsDate = new Date();
-      dueAsDate = parseISO(document.querySelector("#taskDueDate").value);
+      //string in ISO format
+      console.log(document.querySelector("#taskDueDate").value);
 
-      let taskDueDate = format(dueAsDate, "PPPP", { locale: enUS });
+      //Date object
+      console.log(parseISO(document.querySelector("#taskDueDate").value));
+
+      let taskDueDate = parseISO(document.querySelector("#taskDueDate").value);
+
+      console.log(taskDueDate);
 
       let taskPriority = document.querySelector("#taskPriority").value;
 
@@ -296,6 +302,7 @@ const appViewFactory = (projArr) => {
         formPopup.classList.toggle("hidden");
         clearRender();
         projExpander(projArr.length - 1);
+        //renderProjects();
       } else {
         projExpander(renderPos);
       }
