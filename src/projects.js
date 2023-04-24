@@ -18,7 +18,15 @@ const createProject = (title) => {
     }
   };
 
-  return { title, todoArr, deleteTodo, sortTodos };
+  const removeProject = (pos) => {
+    if (pos === 0) {
+      alert("Cannot remove default project!");
+    } else {
+      projArr.splice(pos, 1);
+    }
+  };
+
+  return { title, todoArr, deleteTodo, sortTodos, removeProject };
 };
 
 export { createProject };
