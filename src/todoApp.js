@@ -1,11 +1,8 @@
 import { createProject } from "./projects";
 import { createTodo } from "./todos";
 import "./style.css";
-import { appViewFactory } from "./DOMstuff";
 
-const appFactory = () => {
-  let projArr = [];
-
+const appFactory = (projArr) => {
   //default project when the app opens is called "Tasks"
   projArr.push(createProject("Tasks"));
 
@@ -49,11 +46,3 @@ const appFactory = () => {
 };
 
 export { appFactory };
-
-//appView.clearRender();
-
-//TODO creation
-//
-//One big plus button that adds a todo to the list, prompting the user for all
-//  the data necessary; project choice is a dropdown with the first option
-//      being "New Project"
