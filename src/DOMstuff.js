@@ -295,6 +295,7 @@ const appViewFactory = (projArr) => {
           formPopup.classList.toggle("hidden");
           clearRender();
           found = true;
+          renderPos = i;
           break;
         }
       }
