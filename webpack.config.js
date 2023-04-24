@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/todoApp.js",
+  entry: "./src/app.js",
   mode: "production",
   output: {
     filename: "main.js",
