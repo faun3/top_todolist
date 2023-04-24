@@ -3,6 +3,7 @@ import { createProject } from "./projects";
 import { createTodo } from "./todos";
 import { parseISO } from "date-fns";
 import { enUS } from "date-fns/locale";
+import { appFactory } from "./todoApp";
 
 const appViewFactory = (projArr) => {
   const rootNode = document.querySelector("#app");
@@ -78,8 +79,33 @@ const appViewFactory = (projArr) => {
         projExpander(i);
       });
 
+      let projControlsRight = document.createElement("div");
+      projControlsRight.setAttribute("class", "projControlsRight");
+
+      let projDelete = document.createElement("button");
+      projDelete.setAttribute("id", "deleteProjButton");
+      projDelete.innerHTML = `
+        <span class="material-symbols-outlined">
+          delete
+        </span>
+      `;
+
+      projDelete.addEventListener("click", () => {
+        let isConfirmed = confirm(
+          "Deleted projects are gone FOREVER. Are you sure?"
+        );
+        if (isConfirmed === true) {
+          removeProject(i);
+          clearRender();
+          renderProjects();
+        } else return;
+      });
+
+      projControlsRight.appendChild(expandButton);
+      projControlsRight.appendChild(projDelete);
+
       projCard.appendChild(projTitle);
-      projCard.appendChild(expandButton);
+      projCard.appendChild(projControlsRight);
 
       projDiv.appendChild(projCard);
 
