@@ -126,9 +126,13 @@ const appViewFactory = (projArr) => {
 
       let taskDue = document.createElement("p");
 
-      taskDue.textContent = format(projArr[poz].todoArr[i].dueDate, "PPPP", {
-        locale: enUS,
-      });
+      taskDue.textContent = format(
+        projArr[poz].todoArr[i].dueDate,
+        "PPPP - pp",
+        {
+          locale: enUS,
+        }
+      );
 
       let descContainer = document.createElement("div");
       descContainer.setAttribute("class", "descContainer");
