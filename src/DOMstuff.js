@@ -303,17 +303,19 @@ const appViewFactory = (projArr) => {
     </label>
     <input type="number" id="taskPriority" placeholder="0" name="taskPriority" min="0" max="15" value="0" required>
 
-    <button type="submit" id="submitForm">
-      <span class="material-symbols-outlined">
-        done
-      </span>
-    </button>
+    <div class="formControls">
+      <button type="submit" id="submitForm">
+        <span class="material-symbols-outlined">
+          done
+        </span>
+      </button>
 
-    <button type="button" id="closeForm">
-      <span class="material-symbols-outlined">
-        close
-      </span>
-    </button>
+      <button type="button" id="closeForm">
+        <span class="material-symbols-outlined">
+          close
+        </span>
+      </button>
+    </div>
     `;
 
     formPopup.appendChild(form);
@@ -322,6 +324,7 @@ const appViewFactory = (projArr) => {
 
     const closeFormBtn = document.querySelector("#closeForm");
     closeFormBtn.addEventListener("click", () => {
+      event.preventDefault();
       formPopup.classList.toggle("hidden");
     });
 
