@@ -36,12 +36,6 @@ const appViewFactory = (projArr) => {
   };
 
   const drawAddButton = () => {
-    const blurDiv = document.createElement("div");
-    blurDiv.classList.add("blurDiv");
-    blurDiv.classList.add("hidden");
-
-    appBody.appendChild(blurDiv);
-
     const addButton = document.createElement("button");
     addButton.setAttribute("id", "addButton");
     addButton.addEventListener("click", () => {
@@ -333,7 +327,6 @@ const appViewFactory = (projArr) => {
     closeFormBtn.addEventListener("click", () => {
       event.preventDefault();
       formPopup.classList.toggle("hidden");
-      document.querySelector(".blurDiv").classList.toggle("hidden");
     });
 
     const sendButton = document.querySelector("#submitForm");
@@ -372,7 +365,6 @@ const appViewFactory = (projArr) => {
         if (projArr[i].title === document.querySelector("#taskProject").value) {
           projArr[i].todoArr.push(createdTask);
           formPopup.classList.toggle("hidden");
-          document.querySelector(".blurDiv").classList.toggle("hidden");
           clearRender();
           found = true;
           renderPos = i;
@@ -383,7 +375,6 @@ const appViewFactory = (projArr) => {
         if (document.querySelector("#taskProject").value === "") {
           projArr[0].todoArr.push(createdTask);
           formPopup.classList.toggle("hidden");
-          document.querySelector(".blurDiv").classList.toggle("hidden");
           clearRender();
           projExpander(0);
         } else {
@@ -392,7 +383,6 @@ const appViewFactory = (projArr) => {
           );
           projArr[projArr.length - 1].todoArr.push(createdTask);
           formPopup.classList.toggle("hidden");
-          document.querySelector(".blurDiv").classList.toggle("hidden");
           clearRender();
           projExpander(projArr.length - 1);
         }
